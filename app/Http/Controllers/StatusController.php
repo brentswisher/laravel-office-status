@@ -24,6 +24,12 @@ class StatusController extends Controller
 	}
 
 	public function update( $publicId ){
+		
+		//Validate
+		$attributes = request()->validate([
+			'title' => [ 'required', 'max:255' ]
+		]);
+
 		$status = Status::where('publicId',$publicId)->firstOrFail();
 		$status->title = request('title');
 		$status->save();
@@ -31,9 +37,10 @@ class StatusController extends Controller
 	}
 
 	public function store() {
-		Status::create([
-			'title' => request('title'),
+		$attributes = request()->validate([
+			'title' => [ 'required', 'max:2' ]
 		]);
+		Status::create($attributes);
 		return redirect('/status');
 	}
 
