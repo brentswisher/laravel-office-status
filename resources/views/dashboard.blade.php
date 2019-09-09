@@ -111,7 +111,7 @@
 										<option value="{{ $status['publicId'] }}">
 											{{ $status['title'] }}
 										</option>
-									<?php endforeach ?>
+									@endforeach
 								</select>
 								<br />
 								<input type="text" name="note" id="note" class="form-control" placeholder="Additional Info (location, duration, etc.)" />

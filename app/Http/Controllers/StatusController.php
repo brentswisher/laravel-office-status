@@ -31,9 +31,9 @@ class StatusController extends Controller
 	}
 
 	public function store() {
-		$status = new Status();
-		$status->title = request('title');
-		$status->save();
+		Status::create([
+			'title' => request('title'),
+		]);
 		return redirect('/status');
 	}
 
