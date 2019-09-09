@@ -147,9 +147,10 @@
 			let statusPublicId = $('#statusId').val();
 			let note = $('#note').val();
 			$.post({
-				url:`/officestatus/public/users/${username}/status/`,
+				url:`/officestatus/public/users/${username}/status`,
 				data: $(frm).serialize(),
 				success: function(result,status){
+					console.log(result);
 					if(status == 'success'){
 						let content = `<span class="glyphicon glyphicon-${ isAvailable == 1 ? 'ok' : 'remove'}-circle"></span>`;
 						if(statusPublicId !== ''){
