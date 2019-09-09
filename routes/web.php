@@ -11,12 +11,9 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
-
-
-Route::get('/users', 'UsersController@index');
-Route::get('/users/edit', 'UsersController@edit');
-
+Route::get('/', 'UserStatusController@index');
+Route::get('/users/{username}/status/', 'UserStatusController@show');
+Route::patch('/users/{username}/status/', 'UserStatusController@update');
 
 Route::get('/users', 'UsersController@index');
 Route::get('/users/create', 'UsersController@create');
@@ -25,7 +22,6 @@ Route::get('/users/{username}/edit', 'UsersController@edit');
 Route::post('/users', 'UsersController@store');
 Route::patch('/users/{username}', 'UsersController@update');
 Route::delete('/users/{username}', 'UsersController@destroy');
-
 
 Route::get('/status', 'StatusController@index');
 Route::get('/status/create', 'StatusController@create');

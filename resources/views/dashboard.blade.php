@@ -78,6 +78,8 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<form id="statusForm" method="post" onSubmit="return updateStatus(this)">
+						{{ method_field('PATCH') }}
+						{{ csrf_field() }}
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title">My Status</h4>
@@ -131,8 +133,8 @@
 		var employeeStatus = '';
 		function updateEmployee(username) {
 			if(username !== undefined){
-				$.ajax({url: `/officestatus/dashboard/status/${username}`, success: function(result){
-					loadModal(JSON.parse(result));
+				$.ajax({url: `/officestatus/public/users/${username}/status/`, success: function(result){
+					loadModal(result);
 				}});	
 			} else {
 				resetModal();
@@ -145,7 +147,7 @@
 			let statusPublicId = $('#statusId').val();
 			let note = $('#note').val();
 			$.post({
-				url:`/officestatus/dashboard/status/${username}`,
+				url:`/officestatus/public/users/${username}/status/`,
 				data: $(frm).serialize(),
 				success: function(result,status){
 					if(status == 'success'){
@@ -172,10 +174,10 @@
 			$('#statusId').val('');
 			$('#note').val('');
 		}
-		function loadModal( { username, isAvailable, note, statusPublicId } = emplyeeInfo ) {
+		function loadModal( { username, isAvailable, note, status } = emplyeeInfo ) {
 			$('#employee').val(username);
 			$('#isAvailable').val(isAvailable);
-			$('#statusId').val(statusPublicId);
+			$('#statusId').val(status ? status.publicId : '');
 			$('#note').val(note);
 			$('#statusModal').modal('show');
 		}
