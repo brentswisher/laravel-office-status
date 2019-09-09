@@ -63,15 +63,15 @@
 					<ul class="nav navbar-nav">
 						<!-- <li <cfIf sb.routing[1] EQ "status">class="active"</cfIf>> -->
 						<li>
-							<a href="/">Dashboard</a>
+							<a href="{{ url('/') }}">Dashboard</a>
 						</li>
 						<!-- <li <cfIf sb.routing[1] EQ "employee">class="active"</cfIf>> -->
 						<li>
-							<a href="/users">Employees </a>
+							<a href="{{ url('/users') }}">Employees </a>
 						</li>
 						<!-- <li <cfIf sb.routing[1] EQ "note">class="active"</cfIf>> -->
 						<li>
-							<a href="/status">Status </a>
+							<a href="{{ url('/status') }}">Status </a>
 						</li>
 					</ul>
 				</div>
